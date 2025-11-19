@@ -42,6 +42,10 @@ IF(UNIX)
   MESSAGE(STATUS "Compiling on Unix")
 ENDIF(UNIX)
 
+
+set(EIGEN3_INCLUDE_DIR "/opt/homebrew/opt/eigen/include/eigen3")
+include_directories(${EIGEN3_INCLUDE_DIR})
+
 # Eigen library parallelise itself, though, presumably due to performance issues
 # OPENMP is experimental. We experienced some slowdown with it
 FIND_PACKAGE(OpenMP)
@@ -69,7 +73,7 @@ SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${g2o_C_FLAGS}")
 
 # Find Eigen3
 SET(EIGEN3_INCLUDE_DIR ${G2O_EIGEN3_INCLUDE})
-FIND_PACKAGE(Eigen3 3.1.0 REQUIRED)
+FIND_PACKAGE(Eigen3 REQUIRED)
 IF(EIGEN3_FOUND)
   SET(G2O_EIGEN3_INCLUDE ${EIGEN3_INCLUDE_DIR} CACHE PATH "Directory of Eigen3")
 ELSE(EIGEN3_FOUND)
